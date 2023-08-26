@@ -1,0 +1,6 @@
+/world/overworld/*
+/world/end/*
+/world/nether/*
+!/world/overworld/.gitkeep
+!/world/end/.gitkeep
+!/world/nether/.gitkeep
