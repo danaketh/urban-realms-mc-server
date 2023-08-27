@@ -28,6 +28,9 @@ RUN echo "eula=true" > /home/minecraft/server/eula.txt \
     && echo "# Add custom program arguments {such as nogui} to this file in the next line before the ""$@"" or" >> /home/minecraft/server/run.sh \
     && echo "#  pass them to this script directly" >> /home/minecraft/server/run.sh \
     && echo "java @user_jvm_args.txt @libraries/net/minecraftforge/forge/1.20.1-47.1.0/unix_args.txt ""nogui $@""" >> /home/minecraft/server/run.sh \
+    && echo "-Xms2500M" > /home/minecraft/server/user_jvm_args.txt \
+    && echo "-Xmx4G" >> /home/minecraft/server/user_jvm_args.txt \
+    && echo "-Dterminal.jline=false" >> /home/minecraft/server/user_jvm_args.txt \
     && rm /home/minecraft/server/run.bat
 
 COPY ./bin/entrypoint.sh /home/minecraft/server/entrypoint.sh
@@ -35,3 +38,4 @@ COPY ./bin/entrypoint.sh /home/minecraft/server/entrypoint.sh
 ## Final setup
 #############################
 WORKDIR /home/minecraft/server
+ENTRYPOINT [ "/home/minecraft/server/entrypoint.sh" ]
