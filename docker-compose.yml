@@ -1,9 +1,10 @@
 version: '3.9'
 
 services:
+  
+  # Minecraft server
   minecraft:
     build: ./
-    entrypoint: /home/minecraft/server/entrypoint.sh
     tty: true
     stdin_open: true
     restart: unless-stopped
