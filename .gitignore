@@ -1,6 +1,27 @@
-/world/overworld/*
-/world/end/*
-/world/nether/*
-!/world/overworld/.gitkeep
-!/world/end/.gitkeep
-!/world/nether/.gitkeep
+# Idea
+.idea/
+
+# Python
+__pycache__
+*.pyc
+
+# Common
+*.log
+
+# Environment variables
+.env
+
+# Download cache
+.download_cache.json
+
+# Update check cache
+updates.json
+compatibility_report.json
+
+# Minecraft
+/mc/world/overworld/*
+/mc/world/end/*
+/mc/world/nether/*
+!/mc/world/overworld/.gitkeep
+!/mc/world/end/.gitkeep
+!/mc/world/nether/.gitkeep

@@ -1,0 +1,58 @@
+# Source mappings for different download sources
+# Each source defines how to fetch manifests and construct download URLs
+
+sources:
+  mojang:
+    name: "Mojang Official"
+    description: "Official Minecraft server downloads"
+    manifest_url: "https://launchermeta.mojang.com/mc/game/version_manifest_v2.json"
+    manifest_type: "minecraft"
+    target_dir: "."
+    filename_pattern: "minecraft_server.jar"
+
+  fabric:
+    name: "Fabric Loader"
+    description: "Fabric mod loader for Minecraft"
+    manifest_url: "https://meta.fabricmc.net/v2/versions/loader/{minecraft_version}"
+    manifest_type: "direct_download"
+    target_dir: "."
+    filename_pattern: "fabric-server-launch.jar"
+
+  modrinth:
+    name: "Modrinth"
+    description: "Modern Minecraft mod distribution platform"
+    api_base: "https://api.modrinth.com/v2"
+    manifest_url: "https://api.modrinth.com/v2/project/{project_id}/version"
+    search_url: "https://api.modrinth.com/v2/search?query={mod_name}"
+    manifest_type: "modrinth_versions"
+    target_dir: "mods"
+    user_agent: "minecraft-server-manager/1.0"
+    # Project mappings - only needed for special cases where slug differs from name
+    # By default, the system will:
+    # 1. Use the 'slug' field from config.yaml if present
+    # 2. Check project_mappings below for an override
+    # 3. Fall back to using the mod name as-is
+    #
+    # Only add entries here when neither the mod name nor a config slug will work
+    project_mappings: []
+
+  curseforge:
+    name: "CurseForge"
+    description: "CurseForge mod distribution platform"
+    api_base: "https://api.curseforge.com/v1"
+    mod_info_url: "https://api.curseforge.com/v1/mods/{project_id}"
+    files_url: "https://api.curseforge.com/v1/mods/{project_id}/files"
+    search_url: "https://api.curseforge.com/v1/mods/search"
+    manifest_type: "curseforge"
+    target_dir: "mods"
+    requires_api_key: true
+    game_id: 432  # Minecraft
+    # Note: CurseForge requires API key - set CURSEFORGE_API_KEY environment variable
+    # Get your API key from: https://console.curseforge.com/
+    project_mappings: []
+
+  custom:
+    name: "Custom/Direct URL"
+    description: "Direct download from custom URLs"
+    manifest_type: "direct_url"
+    # For custom sources, the download_url must be specified in config.yaml
